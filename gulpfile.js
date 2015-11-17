@@ -5,6 +5,7 @@ var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
 var watchify = require('gulp-watchify');
 var streamify = require('gulp-streamify');
+var browserSync = require('browser-sync').create();
 
 gulp.task('build', ['build:css']);
 
@@ -36,6 +37,14 @@ gulp.task('watchify', ['enable-watching', 'browserify']);
 
 gulp.task('watch', ['build', 'watchify'], function () {
     gulp.watch('sass/*.scss', ['build:css']);
+});
+
+gulp.task('serve', ['watch'], function () {
+    browserSync.init({
+        server: {
+            baseDir: './public'
+        }
+    });
 });
 
 gulp.task('default', ['build', 'browserify']);
