@@ -1,14 +1,12 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-var $ = require('jquery');
 var injectTapEventPlugin = require('react-tap-event-plugin');
+var Main = require('./components/main.js');
 
-const RaisedButton = require('material-ui/lib/raised-button');
+// needed for React Developer Tools
+window.React = React;
 
 // needed for onTouchTap
 injectTapEventPlugin();
 
-ReactDOM.render(
-    <RaisedButton label="Super Secret Password" primary={true} />,
-    document.getElementById('app')
-);
+ReactDOM.render(<Main />, document.getElementById('app'));
