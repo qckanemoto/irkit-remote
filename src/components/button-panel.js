@@ -1,7 +1,7 @@
 const React = require('react');
 const Paper = require('material-ui/lib/paper');
 const IconButton = require('material-ui/lib/icon-button');
-const MuiDialog = require('material-ui/lib/dialog');
+const Dialog = require('./editing-dialog.js');
 
 module.exports = React.createClass({
     render: function () {
@@ -35,35 +35,6 @@ const Button = React.createClass({
                 <IconButton iconClassName="material-icons" onTouchTap={this.showDialog} style={{opacity: '.3'}}>add</IconButton>
                 <Dialog ref="dialog" onCloseDialog={this.handleCloseDialog} />
             </Paper>
-        );
-    }
-});
-
-const Dialog = React.createClass({
-    getInitialState: function () {
-        return {isOpen: false};
-    },
-    handleRequestClose: function () {
-        this.setState({isOpen: false});
-        this.props.onCloseDialog();
-    },
-    handleDialogSubmit: function () {
-        console.log('submitted');
-    },
-    render: function () {
-        var standardActions = [
-            {text: 'Cancel'},
-            {text: 'Submit', onTouchTap: this.handleDialogSubmit, ref: 'submit'}
-        ];
-        return (
-            <MuiDialog
-                ref="muiDialog"
-                title="Edit button"
-                actions={standardActions}
-                actionFocus="submit"
-                open={this.state.isOpen}
-                onRequestClose={this.handleRequestClose}>
-            </MuiDialog>
         );
     }
 });
