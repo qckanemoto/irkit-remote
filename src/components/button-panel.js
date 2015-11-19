@@ -18,17 +18,22 @@ module.exports = React.createClass({
 });
 
 const Button = React.createClass({
+    getInitialState: function () {
+        return {isEditing: false};
+    },
     showDialog: function () {
         this.refs.dialog.setState({isOpen: true});
+        this.setState({isEditing: true});
+    },
+    handleCloseDialog: function () {
+        this.setState({isEditing: false});
     },
     render: function () {
-        // todo
-        // var bgColor = this.refs.dialog ? '#00bcd4' : '#fff';
-        var bgColor = '#fff';
+        var bgColor = this.state.isEditing ? '#00bcd4' : '#fff';
         return (
             <Paper style={{display: 'inline-block', marginRight: '.5em', marginBottom: '.5em', backgroundColor: bgColor}}>
                 <IconButton iconClassName="material-icons" onTouchTap={this.showDialog} style={{opacity: '.3'}}>add</IconButton>
-                <Dialog ref="dialog" />
+                <Dialog ref="dialog" onCloseDialog={this.handleCloseDialog} />
             </Paper>
         );
     }
@@ -40,6 +45,7 @@ const Dialog = React.createClass({
     },
     handleRequestClose: function () {
         this.setState({isOpen: false});
+        this.props.onCloseDialog();
     },
     handleDialogSubmit: function () {
         console.log('submitted');
@@ -51,6 +57,7 @@ const Dialog = React.createClass({
         ];
         return (
             <MuiDialog
+                ref="muiDialog"
                 title="Edit button"
                 actions={standardActions}
                 actionFocus="submit"
