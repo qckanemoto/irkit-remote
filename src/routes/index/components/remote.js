@@ -9,7 +9,7 @@ const OverlayTrigger = require('react-bootstrap').OverlayTrigger;
 const _ = require('lodash');
 
 const RemoteButton = require('./remote-button.js');
-// const EditingDialog = require('./editing-dialog.js');
+const EditingModal = require('./editing-modal.js');
 
 module.exports = React.createClass({
     propTypes: {
@@ -39,7 +39,9 @@ module.exports = React.createClass({
     },
 
     editButton: function (button) {
-        console.log(button);
+        this.refs.modal.setState({
+            isOpen: true
+        });
     },
 
     handleClickButton: function (button) {
@@ -52,6 +54,7 @@ module.exports = React.createClass({
         // build tabs
         var tabs = [];
         _.forEach(this.props.layout.tabs, function (t, i) {
+
             // build buttons in a tab
             var buttons = [];
             _.forEach(t.buttons, function (b, j) {
@@ -90,6 +93,8 @@ module.exports = React.createClass({
                     <Col xs={6}><Button bsStyle="default" block onClick={this.props.onCancelEditing}><i className="fa fa-times"></i> Cancel</Button></Col>
                     <Col xs={6}><Button bsStyle="primary" block onClick={this.props.onSubmitEditing}><i className="fa fa-check"></i> Submit</Button></Col>
                 </Row>
+
+                <EditingModal ref="modal" />
             </div>
         );
     }
