@@ -1,10 +1,14 @@
 {
   "dependencies": {
+    "history": "^1.13.1",
     "jquery": "^2.1.4",
-    "material-ui": "^0.13.2",
+    "lodash": "^3.10.1",
     "react": "^0.14.2",
     "react-addons-css-transition-group": "^0.14.2",
+    "react-bootstrap": "^0.28.1",
     "react-dom": "^0.14.2",
+    "react-router": "^1.0.0",
+    "react-router-bootstrap": "^0.19.3",
     "react-tap-event-plugin": "^0.2.1"
   },
   "devDependencies": {
@@ -20,8 +24,6 @@
     "gulp-streamify": "^1.0.2",
     "gulp-uglify": "^1.5.1",
     "gulp-watchify": "^0.5.0",
-    "sanitize.css": "^3.0.0",
-    "susy": "^2.2.6",
     "uglify-js": "^2.6.1",
     "watchify": "^3.6.1"
   }
