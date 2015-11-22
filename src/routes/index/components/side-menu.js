@@ -3,6 +3,7 @@ const Panel = require('react-bootstrap').Panel;
 const ListGroup = require('react-bootstrap').ListGroup;
 const ListGroupItem = require('react-bootstrap').ListGroupItem;
 const LinkContainer = require('react-router-bootstrap').LinkContainer;
+const Button = require('react-bootstrap').Button;
 const _ = require('lodash');
 
 // to be removed
@@ -19,11 +20,13 @@ module.exports = React.createClass({
             );
         });
         return (
-            <Panel header={<h4><i className="fa fa-wifi fa-rotate-90"></i> IRKits</h4>}>
-                <ListGroup fill>
-                    {listGroupItems}
-                </ListGroup>
-            </Panel>
+            <div>
+                <Panel header={<h4><i className="fa fa-wifi fa-rotate-90"></i> IRKits</h4>}>
+                    <ListGroup fill>
+                        {listGroupItems}
+                    </ListGroup>
+                </Panel>
+            </div>
         );
     }
 });
