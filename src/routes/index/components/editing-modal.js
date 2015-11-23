@@ -51,6 +51,14 @@ module.exports = React.createClass({
         });
     },
 
+    remove: function () {
+        this.props.onSave({});
+
+        this.setState({
+            isOpen: false
+        });
+    },
+
     render: function () {
         var faLink = (
             <OverlayTrigger overlay={<Tooltip id="search-icons-from-fontawesome">Find icons from fontawesome</Tooltip>} placement="top">
@@ -88,6 +96,7 @@ module.exports = React.createClass({
                 <Modal.Footer>
                     <Button onClick={this.close}><i className="fa fa-times"></i> Cancel</Button>
                     <Button bsStyle="primary" onClick={this.save}><i className="fa fa-check"></i> OK</Button>
+                    <Button bsStyle="danger" className="pull-left" onClick={this.remove}><i className="fa fa-trash"></i> Remove</Button>
                 </Modal.Footer>
             </Modal>
         );
