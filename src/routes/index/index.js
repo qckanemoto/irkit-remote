@@ -16,6 +16,9 @@ module.exports = React.createClass({
         };
     },
 
+    componentDidMount: function () {
+    },
+
     sendSignal: function (signal) {
         console.log(mockData.remote.device, signal);
     },

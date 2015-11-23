@@ -32,16 +32,24 @@ module.exports = React.createClass({
 
     getInitialState: function () {
         return {
+            editing: {}
         };
     },
 
-    componentDidMount: function () {
+    editButton: function (button) {
+        this.setState({
+            editing: button
+        });
+        this.refs.modal.setState({
+            isOpen: true,
+            icon: button.icon,
+            label: button.label,
+            signal: button.signal
+        });
     },
 
-    editButton: function (button) {
-        this.refs.modal.setState({
-            isOpen: true
-        });
+    saveButton: function (button) {
+        console.log(button);
     },
 
     handleClickButton: function (button) {
@@ -94,7 +102,7 @@ module.exports = React.createClass({
                     <Col xs={6}><Button bsStyle="primary" block onClick={this.props.onSubmitEditing}><i className="fa fa-check"></i> Submit</Button></Col>
                 </Row>
 
-                <EditingModal ref="modal" />
+                <EditingModal ref="modal" onSave={this.saveButton} />
             </div>
         );
     }

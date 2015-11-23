@@ -1,4 +1,5 @@
 const React = require('react');
+const LinkedStateMixin = require('react-addons-linked-state-mixin');
 const Row = require('react-bootstrap').Row;
 const Col = require('react-bootstrap').Col;
 const Modal = require('react-bootstrap').Modal;
@@ -9,26 +10,23 @@ const Tooltip = require('react-bootstrap').Tooltip;
 const OverlayTrigger = require('react-bootstrap').OverlayTrigger;
 
 module.exports = React.createClass({
+    mixins: [
+        LinkedStateMixin   // to use two-way binding
+    ],
+
     PropTypes: {
-        icon: React.PropTypes.string,
-        label: React.PropTypes.string,
-        signal: React.PropTypes.string.isRequired
+        onSave: React.PropTypes.func.isRequired
     },
 
     getDefaultProps: function () {
-        return {
-            icon: '',
-            label: '',
-            signal: ''
-        };
     },
 
     getInitialState: function () {
         return {
             isOpen: false,
-            icon: this.props.icon,
-            label: this.props.label,
-            signal: this.props.signal
+            icon: '',
+            label: '',
+            signal: '',
         };
     },
 
@@ -48,27 +46,21 @@ module.exports = React.createClass({
     },
 
     save: function () {
+        this.props.onSave({
+            icon: this.state.icon,
+            label: this.state.label,
+            signal: this.state.signal
+        });
+
         this.setState({
             isOpen: false
         });
     },
 
-    handleIconChange: function () {
-        this.setState({
-            icon: this.refs.icon.getValue()
-        });
-    },
-
-    handleLabelChange: function () {
-    },
-
-    handleSignalChange: function () {
-    },
-
     render: function () {
         var faLink = (
-            <OverlayTrigger overlay={<Tooltip id="search-icons-from-fontawesome">Search icons from fontawesome</Tooltip>} placement="top">
-                <a href="http://fontawesome.io/icons/" target="_blank"><i className='fa fa-search'></i></a>
+            <OverlayTrigger overlay={<Tooltip id="search-icons-from-fontawesome">Find icons from fontawesome</Tooltip>} placement="top">
+                <a href="http://fontawesome.io/icons/" target="_blank" tabIndex={-1}><i className='fa fa-search'></i></a>
             </OverlayTrigger>
         );
 
@@ -88,15 +80,15 @@ module.exports = React.createClass({
                                     placeholder="power-off"
                                     autoFocus
                                     addonAfter={faLink}
-                                    onChange={this.handleIconChange}
+                                    valueLink={this.linkState('icon')}
                                 />
                             </Col>
                             <Col xs={4}>
                                 <FormControls.Static label="Preview"><i className={'fa fa-' + this.state.icon}></i></FormControls.Static>
                             </Col>
                         </Row>
-                        <Input type="text" label="Label" placeholder="TV Power" onChange={this.handleLabelChange} />
-                        <Input type="textarea" rows={3} label="IR Signal" placeholder='{"format":"raw",...}' onChange={this.handleSignalChange} />
+                        <Input type="text" label="Label" placeholder="TV Power" valueLink={this.linkState('label')} />
+                        <Input type="textarea" rows={3} label="IR Signal" placeholder='{"format":"raw",...}' valueLink={this.linkState('signal')} />
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
