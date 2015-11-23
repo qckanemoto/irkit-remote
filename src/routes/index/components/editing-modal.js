@@ -30,12 +30,6 @@ module.exports = React.createClass({
         };
     },
 
-    open: function () {
-        this.setState({
-            isOpen: true
-        });
-    },
-
     close: function () {
         this.setState({
             isOpen: false,
