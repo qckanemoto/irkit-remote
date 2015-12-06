@@ -37,6 +37,10 @@ module.exports = React.createClass({
 
     submitEditing: function () {
         console.log('Submitted editing');
+
+        this.setState({
+            isEditing: false
+        });
     },
 
     render: function () {
@@ -48,13 +52,12 @@ module.exports = React.createClass({
                             isEditing={this.state.isEditing}
                             layout={mockData.remote.layout}
                             onClickButton={this.sendSignal}
-                            onEnterEditing={this.enterEditing}
                             onCancelEditing={this.cancelEditing}
                             onSubmitEditing={this.submitEditing}
                         />
                     </Col>
                     <Col xs={12} md={2} mdOffset={2} mdPull={6}>
-                        <SideMenu />
+                        <SideMenu isEditing={this.state.isEditing} onEnterEditing={this.enterEditing} />
                     </Col>
                 </Row>
             </Grid>
