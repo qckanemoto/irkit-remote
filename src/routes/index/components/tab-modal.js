@@ -13,13 +13,12 @@ module.exports = React.createClass({
 
     PropTypes: {
         tabNames: React.PropTypes.array,
-        onSave: React.PropTypes.func
+        onSave: React.PropTypes.func.isRequired
     },
 
     getDefaultProps: function () {
         return {
-            tabNames: [],
-            onSave: function () {}
+            tabNames: []
         };
     },
 
@@ -96,7 +95,6 @@ const SortableItem = React.createClass({
     getDefaultProps: function () {
         return {
             value: '',
-            onMoveUp: function () {},
             onMoveDown: function () {}
         };
     },
