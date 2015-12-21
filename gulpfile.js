@@ -5,7 +5,7 @@ var uglify = require('gulp-uglify');
 var plumber = require('gulp-plumber');
 var watchify = require('gulp-watchify');
 var streamify = require('gulp-streamify');
-var browserSync = require('browser-sync').create();
+var browserSync = require('browser-sync');
 
 gulp.task('build', ['build:css']);
 

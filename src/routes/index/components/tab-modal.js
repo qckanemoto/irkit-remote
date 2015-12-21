@@ -12,20 +12,23 @@ module.exports = React.createClass({
     ],
 
     PropTypes: {
-        tabNames: React.PropTypes.array,
+        tabs: React.PropTypes.arrayOf(React.PropTypes.shape({
+            index: React.PropTypes.string,
+            name: React.PropTypes.string
+        })),
         onSave: React.PropTypes.func.isRequired
     },
 
     getDefaultProps: function () {
         return {
-            tabNames: []
+            tabs: []
         };
     },
 
     getInitialState: function () {
         return {
             isOpen: false,
-            tabNames: this.props.tabNames
+            tabs: this.props.tabs
         };
     },
 
@@ -39,22 +42,22 @@ module.exports = React.createClass({
     },
 
     save: function () {
-        this.props.onSave(this.state.tabNames);
+        this.props.onSave(this.state.tabs);
 
         this.setState({
             isOpen: false
         });
     },
 
-    handleMoveDown: function (id) {
-        var index1 = _.findIndex(this.state.tabNames, 'id', id);
+    handleMoveDown: function (index) {
+        var index1 = _.findIndex(this.state.tabs, 'index', index);
         var index2 = index1 + 1;
-        if (this.state.tabNames[index1] && this.state.tabNames[index2]) {
-            var buf = deepcopy(this.state.tabNames);
-            buf[index1] = this.state.tabNames[index2];
-            buf[index2] = this.state.tabNames[index1];
+        if (this.state.tabs[index1] && this.state.tabs[index2]) {
+            var buf = deepcopy(this.state.tabs);
+            buf[index1] = this.state.tabs[index2];
+            buf[index2] = this.state.tabs[index1];
             this.setState({
-                tabNames: buf
+                tabs: buf
             });
         }
     },
@@ -62,9 +65,9 @@ module.exports = React.createClass({
     render: function () {
         var sortableItems = [];
         var that = this;
-        _.forEach(this.state.tabNames, function (tab) {
+        _.forEach(this.state.tabs, function (tab) {
             sortableItems.push(
-                <SortableItem key={tab.id} id={tab.id} value={tab.value} onMoveDown={that.handleMoveDown} />
+                <SortableItem key={tab.index} id={tab.index} value={tab.name} onMoveDown={that.handleMoveDown} />
             );
         });
 

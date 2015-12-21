@@ -14,7 +14,9 @@ const ButtonModal = require('./button-modal.js');
 module.exports = React.createClass({
     propTypes: {
         isEditing: React.PropTypes.bool,
-        layout: React.PropTypes.object,
+        layout: React.PropTypes.shape({
+            tabs: React.PropTypes.array
+        }),
         onClickButton: React.PropTypes.func.isRequired,
         onCancelEditing: React.PropTypes.func.isRequired,
         onSubmitEditing: React.PropTypes.func.isRequired
@@ -22,15 +24,25 @@ module.exports = React.createClass({
 
     getDefaultProps: function () {
         return {
+            isEditing: false,
             layout: {
                 tabs: []
-            },
-            isEditing: false
+            }
         };
     },
 
     getInitialState: function () {
+        var tabNames = [];
+        _.forEach(this.props.layout.tabs, function (tab, i) {
+            tabNames.push({
+                index: i,
+                name: tab.name
+            });
+        });
+
         return {
+            tabs: this.props.layout.tabs,
+            tabNames: tabNames,
             editing: {}
         };
     },
@@ -54,7 +66,16 @@ module.exports = React.createClass({
     },
 
     saveTab: function (tabs) {
-        console.log(tabs);
+        var that = this;
+        var buf = [];
+        _.forEach(tabs, function (tab, i) {
+            that.state.tabs[tab.index].name = tab.name;
+            buf.push(that.state.tabs[tab.index]);
+        });
+
+        this.setState({
+            tabs: buf
+        });
     },
 
     saveButton: function (button) {
@@ -69,10 +90,10 @@ module.exports = React.createClass({
         var that = this;
 
         // build tabs
-        var tabs = [];
-        _.forEach(this.props.layout.tabs, function (t, i) {
+        var tabContents = [];
+        _.forEach(this.state.tabs, function (t, i) {
 
-            // build buttons in a tab
+            // build tabContents
             var buttons = [];
             _.forEach(t.buttons, function (b, j) {
                 buttons.push(
@@ -85,7 +106,7 @@ module.exports = React.createClass({
                     />
                 );
             });
-            tabs.push(
+            tabContents.push(
                 <Tab key={i} eventKey={i} title={t.name} style={{marginTop: '1em'}}>
                     <Row style={{marginLeft: '0'}}>
                         {buttons}
@@ -94,13 +115,6 @@ module.exports = React.createClass({
             );
         });
 
-        // todo
-        var tabNames = [
-            {id: 1, value: 'test1'},
-            {id: 2, value: 'test2'},
-            {id: 3, value: 'test3'}
-        ];
-
         return (
             <div>
                 <div className={this.props.isEditing || 'hidden'}>
@@ -108,7 +122,7 @@ module.exports = React.createClass({
                 </div>
 
                 <Tabs defaultActiveKey={0}>
-                    {tabs}
+                    {tabContents}
                 </Tabs>
 
                 <Row className={this.props.isEditing || 'hidden'} style={{marginBottom: '1em'}}>
@@ -117,7 +131,7 @@ module.exports = React.createClass({
                 </Row>
 
                 <ButtonModal ref="buttonModal" onSave={this.saveButton} />
-                <TabModal ref="tabModal" tabNames={tabNames} onSave={this.saveTab} />
+                <TabModal ref="tabModal" tabs={this.state.tabNames} onSave={this.saveTab} />
             </div>
         );
     }
