@@ -32,17 +32,8 @@ module.exports = React.createClass({
     },
 
     getInitialState: function () {
-        var tabNames = [];
-        _.forEach(this.props.layout.tabs, function (tab, i) {
-            tabNames.push({
-                index: i,
-                name: tab.name
-            });
-        });
-
         return {
             tabs: this.props.layout.tabs,
-            tabNames: tabNames,
             editing: {}
         };
     },
@@ -66,15 +57,8 @@ module.exports = React.createClass({
     },
 
     saveTab: function (tabs) {
-        var that = this;
-        var buf = [];
-        _.forEach(tabs, function (tab, i) {
-            that.state.tabs[tab.index].name = tab.name;
-            buf.push(that.state.tabs[tab.index]);
-        });
-
         this.setState({
-            tabs: buf
+            tabs: tabs
         });
     },
 
@@ -131,7 +115,7 @@ module.exports = React.createClass({
                 </Row>
 
                 <ButtonModal ref="buttonModal" onSave={this.saveButton} />
-                <TabModal ref="tabModal" tabs={this.state.tabNames} onSave={this.saveTab} />
+                <TabModal ref="tabModal" tabs={this.state.tabs} onSave={this.saveTab} />
             </div>
         );
     }

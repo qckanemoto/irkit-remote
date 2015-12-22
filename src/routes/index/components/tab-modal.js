@@ -7,14 +7,10 @@ const deepcopy = require('deepcopy');
 const _ = require('lodash');
 
 module.exports = React.createClass({
-    mixins: [
-        LinkedStateMixin   // to use two-way binding
-    ],
-
     PropTypes: {
         tabs: React.PropTypes.arrayOf(React.PropTypes.shape({
-            index: React.PropTypes.string,
-            name: React.PropTypes.string
+            name: React.PropTypes.string,
+            buttons: React.PropTypes.array
         })),
         onSave: React.PropTypes.func.isRequired
     },
@@ -37,6 +33,7 @@ module.exports = React.createClass({
 
     close: function () {
         this.setState({
+            tabs: this.props.tabs,
             isOpen: false
         });
     },
@@ -49,25 +46,33 @@ module.exports = React.createClass({
         });
     },
 
+    handleChangeValue: function (index, value) {
+        var buf = deepcopy(this.state.tabs);
+        buf[index].name = value;
+        this.setState({
+            tabs: buf
+        });
+    },
+
     handleMoveDown: function (index) {
-        var index1 = _.findIndex(this.state.tabs, 'index', index);
+        var index1 = index;
         var index2 = index1 + 1;
+        var buf = deepcopy(this.state.tabs);
         if (this.state.tabs[index1] && this.state.tabs[index2]) {
-            var buf = deepcopy(this.state.tabs);
             buf[index1] = this.state.tabs[index2];
             buf[index2] = this.state.tabs[index1];
-            this.setState({
-                tabs: buf
-            });
         }
+        this.setState({
+            tabs: buf
+        });
     },
 
     render: function () {
         var sortableItems = [];
         var that = this;
-        _.forEach(this.state.tabs, function (tab) {
+        _.forEach(this.state.tabs, function (tab, i) {
             sortableItems.push(
-                <SortableItem key={tab.index} id={tab.index} value={tab.name} onMoveDown={that.handleMoveDown} />
+                <SortableItem key={i} index={i} tab={tab} onChangeValue={that.handleChangeValue} onMoveDown={that.handleMoveDown} />
             );
         });
 
@@ -90,32 +95,40 @@ module.exports = React.createClass({
 
 const SortableItem = React.createClass({
     PropTypes: {
-        id: React.PropTypes.string.isRequired,
-        value: React.PropTypes.string,
+        index: React.PropTypes.number.isRequired,
+        tab: React.PropTypes.object.isRequired,
         onMoveDown: React.PropTypes.func
     },
 
     getDefaultProps: function () {
         return {
-            value: '',
             onMoveDown: function () {}
         };
     },
 
     getInitialState: function () {
         return {
-            value: this.props.value
+            tab: this.props.tab
         };
     },
 
-    handleChange: function (e) {
+    componentWillReceiveProps: function (nextProps) {
         this.setState({
-            value: e.target.value
+            tab: nextProps.tab
+        })
+    },
+
+    handleChange: function (e) {
+        var buf = deepcopy(this.state.tab);
+        buf.name = e.target.value;
+        this.setState({
+            tab: buf
         });
+        this.props.onChangeValue(this.props.index, e.target.value);
     },
 
     moveDown: function () {
-        this.props.onMoveDown(this.props.id);
+        this.props.onMoveDown(this.props.index);
     },
 
     render: function () {
@@ -123,7 +136,7 @@ const SortableItem = React.createClass({
             <Button onClick={this.moveDown}><i className="fa fa-chevron-down"></i></Button>
         );
         return (
-            <Input type="text" value={this.state.value} onChange={this.handleChange} buttonAfter={button} />
+            <Input type="text" value={this.state.tab.name} onChange={this.handleChange} buttonAfter={button} />
         );
     }
 });
