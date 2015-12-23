@@ -1,10 +1,8 @@
 const React = require('react');
-const Row = require('react-bootstrap').Row;
-const Col = require('react-bootstrap').Col;
-const Button = require('react-bootstrap').Button;
 const Tabs = require('react-bootstrap').Tabs;
 const Tab = require('react-bootstrap').Tab;
-const Input = require('react-bootstrap').Input;
+const Row = require('react-bootstrap').Row;
+const Button = require('react-bootstrap').Button;
 const _ = require('lodash');
 
 const RemoteButton = require('./remote-button.js');
@@ -13,46 +11,45 @@ const ButtonModal = require('./button-modal.js');
 
 module.exports = React.createClass({
     propTypes: {
+        tabs: React.PropTypes.array,
         isEditing: React.PropTypes.bool,
-        layout: React.PropTypes.shape({
-            tabs: React.PropTypes.array
-        }),
-        onClickButton: React.PropTypes.func.isRequired,
-        onCancelEditing: React.PropTypes.func.isRequired,
-        onSubmitEditing: React.PropTypes.func.isRequired
+        onClickButton: React.PropTypes.func
     },
 
     getDefaultProps: function () {
         return {
+            tabs: [],
             isEditing: false,
-            layout: {
-                tabs: []
-            }
+            onClickButton: function () {}
         };
     },
 
     getInitialState: function () {
         return {
-            tabs: this.props.layout.tabs,
-            editing: {}
+            tabs: this.props.tabs,
+            isEditing: this.props.isEditing
         };
     },
 
-    editTab: function () {
-        this.refs.tabModal.setState({
-            isOpen: true
+    componentWillReceiveProps: function (nextProps) {
+        this.setState({
+            tabs: nextProps.tabs,
+            isEditing: nextProps.isEditing
         });
     },
 
     editButton: function (button) {
-        this.setState({
-            editing: button
-        });
         this.refs.buttonModal.setState({
             isOpen: true,
             icon: button.icon,
             label: button.label,
             signal: button.signal
+        });
+    },
+
+    editTab: function () {
+        this.refs.tabModal.setState({
+            isOpen: true
         });
     },
 
@@ -84,8 +81,8 @@ module.exports = React.createClass({
                     <RemoteButton
                         key={j}
                         config={b}
-                        isEditing={that.props.isEditing}
-                        onClick={that.props.isEditing ? that.editButton : that.handleClickButton}
+                        isEditing={that.state.isEditing}
+                        onClick={that.state.isEditing ? that.editButton : that.handleClickButton}
                         style={{paddingLeft: '0'}}
                     />
                 );
@@ -101,18 +98,13 @@ module.exports = React.createClass({
 
         return (
             <div>
-                <div className={this.props.isEditing || 'hidden'}>
+                <div className={this.state.isEditing || 'hidden'}>
                     <Button bsStyle="link" className="pull-right" onClick={this.editTab}><i className="fa fa-cog"></i></Button>
                 </div>
 
                 <Tabs defaultActiveKey={0}>
                     {tabContents}
                 </Tabs>
-
-                <Row className={this.props.isEditing || 'hidden'} style={{marginBottom: '1em'}}>
-                    <Col xs={6}><Button block onClick={this.props.onCancelEditing}><i className="fa fa-times"></i> Cancel</Button></Col>
-                    <Col xs={6}><Button bsStyle="primary" block onClick={this.props.onSubmitEditing}><i className="fa fa-check"></i> Submit</Button></Col>
-                </Row>
 
                 <ButtonModal ref="buttonModal" onSave={this.saveButton} />
                 <TabModal ref="tabModal" tabs={this.state.tabs} onSave={this.saveTab} />

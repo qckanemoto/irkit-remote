@@ -6,11 +6,9 @@ const LinkContainer = require('react-router-bootstrap').LinkContainer;
 const Button = require('react-bootstrap').Button;
 const _ = require('lodash');
 
-// to be removed
-const mockData = require('../../../../tests/mock-data.js');
-
 module.exports = React.createClass({
     PropTypes: {
+        devices: React.PropTypes.array.isRequired,
         isEditing: React.PropTypes.bool,
         onEnterEditing: React.PropTypes.func.isRequired
     },
@@ -21,9 +19,15 @@ module.exports = React.createClass({
         };
     },
 
+    getInitialState: function () {
+        return {
+            devices: this.props.devices
+        };
+    },
+
     render: function () {
         var listGroupItems = [];
-        _.forEach(mockData.devices, function (d, i) {
+        _.forEach(this.props.devices, function (d, i) {
             listGroupItems.push(
                 <LinkContainer to={'/remotes/' + d.id + '/'} key={i}>
                     <ListGroupItem>{d.name}</ListGroupItem>

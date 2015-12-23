@@ -39,12 +39,21 @@ gulp.task('watch', ['build', 'watchify'], function () {
     gulp.watch('sass/*.scss', ['build:css']);
 });
 
+var serving = false;
 gulp.task('serve', ['watch'], function () {
+    serving = true;
     browserSync.init({
         server: {
             baseDir: './public'
         }
     });
+    gulp.watch('src/**/*.*', ['bs-reload']);
+});
+
+gulp.task('bs-reload', function () {
+    if (serving) {
+        setTimeout(browserSync.reload, 1000);
+    }
 });
 
 gulp.task('default', ['build', 'browserify']);

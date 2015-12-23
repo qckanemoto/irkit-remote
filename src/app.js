@@ -3,15 +3,14 @@ const ReactDOM = require('react-dom');
 const injectTapEventPlugin = require('react-tap-event-plugin');
 const Router = require('react-router').Router;
 const Route = require('react-router').Route;
-const IndexRoute = require('react-router').IndexRoute;
 const IndexRedirect = require('react-router').IndexRedirect;
-const Redirect = require('react-router').Redirect;
 const createHistory = require('history').createHashHistory;
 
 const Header = require('./header.js');
-const Index = require('./routes/index/index.js');
+const Remotes = require('./routes/remotes/index.js');
 const Devices = require('./routes/devices/index.js');
-const Device = require('./routes/devices/device.js');
+const NewDevice = require('./routes/devices/new-device.js');
+const EditDevice = require('./routes/devices/edit-device.js');
 
 // needed for React Developer Tools
 window.React = React;
@@ -22,6 +21,14 @@ injectTapEventPlugin();
 var history = createHistory({
     queryKey: false
 });
+
+// fixme
+const remotes = require('../tests/remotes.js');
+
+var indexRedirectTo = remotes.length
+    ? 'remotes/' + remotes[0].id + '/'
+    : 'devices/new'
+;
 
 const App = React.createClass({
     render: function () {
@@ -34,19 +41,14 @@ const App = React.createClass({
     }
 });
 
-// to be removed
-const mockData = require('../tests/mock-data.js');
-
 ReactDOM.render((
     <Router history={history}>
-        <Redirect from="/" to="/remotes/" />
         <Route path="/" component={App}>
-            <Route path="remotes/" component={Index}>
-                <IndexRedirect to={mockData.devices[0].id + '/'} />
-                <Route path=":deviceId/" component={Index} />
-            </Route>
+            <IndexRedirect to={indexRedirectTo} />
+            <Route path="remotes/:deviceId/" component={Remotes} />
             <Route path="devices/" component={Devices}>
-                <Route path=":id/" component={Device} />
+                <Route path="new/" component={NewDevice} />
+                <Route path="edit/:id/" component={EditDevice} />
             </Route>
         </Route>
     </Router>
