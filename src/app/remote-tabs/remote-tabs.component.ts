@@ -24,7 +24,31 @@ export class RemoteTabsComponent implements OnInit {
                 {
                     icon: 'rocket',
                     label: 'label3'
-                }
+                },
+                {
+                    icon: 'rocket',
+                    label: 'label3'
+                },
+                {
+                    icon: 'rocket',
+                    label: 'label3'
+                },
+                {
+                    icon: 'rocket',
+                    label: 'label3'
+                },
+                {
+                    icon: 'rocket',
+                    label: 'label3'
+                },
+                {
+                    icon: 'rocket',
+                    label: 'label3'
+                },
+                {
+                    icon: 'rocket',
+                    label: 'label3'
+                },
             ]
         },
         {

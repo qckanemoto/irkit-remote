@@ -1,3 +1,21 @@
 .row {
-    padding: 20px 0;
+    padding: 0;
+    padding-top: 20px;
 }
+
+.btn {
+    padding: 1em;
+    margin-bottom: 1em;
+    height: 5.5em;
+
+    &.adder {
+        opacity: .3;
+        border-style: dashed;
+    }
+
+    span {
+        font-size: .8em;
+        margin-top: .5em;
+    }
+}
+
