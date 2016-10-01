@@ -1,0 +1,5 @@
+<tabset>
+    <tab *ngFor="let tab of tabs" [heading]="tab.name">
+        <app-remote-tab-content [buttons]="tab.buttons"></app-remote-tab-content>
+    </tab>
+</tabset>

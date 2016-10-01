@@ -9,11 +9,15 @@ import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { AppComponent } from './app.component';
 import { RemoteComponent } from './remote/remote.component';
+import { RemoteTabsComponent } from './remote-tabs/remote-tabs.component';
+import { RemoteTabContentComponent } from './remote-tab-content/remote-tab-content.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         RemoteComponent,
+        RemoteTabsComponent,
+        RemoteTabContentComponent,
     ],
     imports: [
         BrowserModule,
