@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import { RemoteComponent } from './remote/remote.component';
 import { RemoteTabsComponent } from './remote-tabs/remote-tabs.component';
 import { RemoteTabContentComponent } from './remote-tab-content/remote-tab-content.component';
+import { RemoteButtonEditorComponent } from './remote-button-editor/remote-button-editor.component';
 
 @NgModule({
     declarations: [
@@ -18,6 +19,7 @@ import { RemoteTabContentComponent } from './remote-tab-content/remote-tab-conte
         RemoteComponent,
         RemoteTabsComponent,
         RemoteTabContentComponent,
+        RemoteButtonEditorComponent,
     ],
     imports: [
         BrowserModule,

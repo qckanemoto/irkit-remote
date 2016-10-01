@@ -14,38 +14,47 @@ export class RemoteTabsComponent implements OnInit {
             name: 'Tab1',
             buttons: [
                 {
+                    id: '1',
                     icon: 'power-off',
                     label: 'label1'
                 },
                 {
+                    id: '2',
                     icon: 'music',
                     label: 'label2'
                 },
                 {
+                    id: '3',
                     icon: 'rocket',
                     label: 'label3'
                 },
                 {
+                    id: '4',
                     icon: 'rocket',
                     label: 'label3'
                 },
                 {
+                    id: '5',
                     icon: 'rocket',
                     label: 'label3'
                 },
                 {
+                    id: '6',
                     icon: 'rocket',
                     label: 'label3'
                 },
                 {
+                    id: '7',
                     icon: 'rocket',
                     label: 'label3'
                 },
                 {
+                    id: '8',
                     icon: 'rocket',
                     label: 'label3'
                 },
                 {
+                    id: '9',
                     icon: 'rocket',
                     label: 'label3'
                 },

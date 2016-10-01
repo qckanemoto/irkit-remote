@@ -1,15 +1,15 @@
 <div class="row">
     <div *ngFor="let button of buttons" class="col-xs-3">
-        <div class="btn btn-block btn-default">
+        <a routerLink="/remote/edit/{{ button.id }}" class="btn btn-block btn-default">
             <div><i class="fa fa-2x fa-{{ button.icon }}"></i></div>
             <span>{{ button.label }}</span>
-        </div>
+        </a>
         <a class="badge badge-delete" onclick="confirm('Want to delete?')"><i class="fa fa-times"></i></a>
     </div>
     <div class="col-xs-3">
-        <div class="btn btn-block btn-default adder">
+        <a routerLink="/remote/add" class="btn btn-block btn-default adder">
             <div><i class="fa fa-2x fa-plus"></i></div>
             <span>Add</span>
-        </div>
+        </a>
     </div>
 </div>

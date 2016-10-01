@@ -1,0 +1,15 @@
+<div class="form-group">
+    <label class="form-label">Label</label>
+    <input type="text" class="form-control" placeholder="TV Power" autofocus>
+</div>
+<div class="form-group">
+    <label class="form-label">Icon <a href="http://fontawesome.io/icons/" target="_blank"><i class="fa fa-question-circle"></i></a></label>
+    <div class="input-group">
+        <span class="input-group-addon"><i class="fa fa-{{ iconInput }}"></i></span>
+        <input type="text" class="form-control" placeholder="power-off" [(ngModel)]="iconInput">
+    </div>
+</div>
+<div class="form-group" style="margin-top: 30px;">
+    <a routerLink="/remote" class="btn btn-default pull-left"><i class="fa fa-chevron-left"></i> Cancel</a>
+    <a class="btn btn-primary pull-right"><i class="fa fa-check"></i> Submit</a>
+</div>
