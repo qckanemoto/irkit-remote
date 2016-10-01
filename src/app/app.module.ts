@@ -8,10 +8,12 @@ import { IRKitxRoutingModule } from './app-routing.module';
 import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { AppComponent } from './app.component';
+import { RemoteComponent } from './remote/remote.component';
 
 @NgModule({
     declarations: [
         AppComponent,
+        RemoteComponent,
     ],
     imports: [
         BrowserModule,

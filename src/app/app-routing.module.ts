@@ -1,7 +1,19 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-const routes: Routes = [];
+import { RemoteComponent } from './remote/remote.component';
+
+const routes: Routes = [
+    {
+        path: '',
+        redirectTo: '/remote',
+        pathMatch: 'full'
+    },
+    {
+        path: 'remote',
+        component: RemoteComponent
+    }
+];
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],
