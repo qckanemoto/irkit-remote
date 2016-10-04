@@ -1,6 +1,11 @@
 .row {
     padding: 0;
     padding-top: 20px;
+    padding-left: 15px;
+
+    [class^="col-"] {
+        padding-left: 0;
+    }
 }
 
 .btn {
@@ -22,6 +27,6 @@
 .badge-delete {
     position: absolute;
     top: -5px;
-    left: 5px;
+    left: -5px;
     background-color: #c00;
 }
