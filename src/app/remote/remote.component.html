@@ -1,16 +1,6 @@
 <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
         <ul class="nav nav-pills">
-            <li class="dropdown active">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-wifi fa-rotate-90"></i> {{ device.name }} <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                    <li><a href="#">Other device</a></li>
-                    <li><a href="#">Other device</a></li>
-                    <li><a href="#">Other device</a></li>
-                </ul>
-            </li>
             <li class="pull-right {{ isEditing ? 'active' : '' }}">
                 <a (click)="toggleEditing()">
                     <i class="fa fa-{{ isEditing ? 'check' : 'cog' }}"></i>

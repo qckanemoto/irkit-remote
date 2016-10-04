@@ -1,0 +1,36 @@
+#content {
+    padding-top: 70px;
+}
+
+#footer {
+    padding-bottom: 70px;
+}
+
+.navbar-header, .navbar-nav > li, .navbar-text {
+    display: inline-block;
+}
+
+.navbar-nav {
+    margin: 0;
+
+    li > a  {
+        @media (max-width: 768px) {
+            line-height: 30px;
+        }
+    }
+}
+
+.navbar-right {
+    float: right !important;
+}
+
+.navbar-fixed-bottom {
+    .navbar-nav {
+        width: 100%;
+
+        li {
+            width: 33.3%;
+            text-align: center;
+        }
+    }
+}
