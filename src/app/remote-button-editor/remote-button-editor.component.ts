@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
-import { Button } from "../classes/button";
+import { Location } from "@angular/common";
+
+import { Button } from '../classes/button';
+import { Device } from '../classes/device';
 
 @Component({
     selector: 'app-remote-button-editor',
@@ -9,20 +12,34 @@ import { Button } from "../classes/button";
 })
 export class RemoteButtonEditorComponent implements OnInit {
 
+    device: Device;
     button: Button;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private location: Location) {
     }
 
     ngOnInit() {
         this.route.params.forEach((params: Params) => {
+            let deviceId: string = params['deviceId'];
             let buttonId: string = params['buttonId'];
+
+            this.device = {
+                id: deviceId,
+                name: 'sample device',
+                clientkey: 'sample clientkey',
+                deviceid: 'sample deviceid'
+            };
             this.button = {
                 id: buttonId,
                 icon: 'power-off',
-                label: 'sample button'
+                label: 'sample button',
+                signal: 'sample signal'
             };
         });
+    }
+
+    goBack() {
+        this.location.back();
     }
 
 }

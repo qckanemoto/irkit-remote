@@ -1,12 +1,12 @@
 <div class="row">
     <div *ngFor="let button of buttons" class="col-xs-3">
-        <a routerLink="/remote/edit/{{ button.id }}" class="btn btn-block btn-default">
+        <a (click)="onClickButton(button)" class="btn btn-block btn-default">
             <div><i class="fa fa-2x fa-{{ button.icon }}"></i></div>
             <span>{{ button.label }}</span>
         </a>
-        <a class="badge badge-delete" onclick="confirm('Want to delete?')"><i class="fa fa-times"></i></a>
+        <a *ngIf="isEditing" class="badge badge-delete" onclick="confirm('Want to delete?')"><i class="fa fa-times"></i></a>
     </div>
-    <div class="col-xs-3">
+    <div *ngIf="isEditing" class="col-xs-3">
         <a routerLink="/remote/add" class="btn btn-block btn-default adder">
             <div><i class="fa fa-2x fa-plus"></i></div>
             <span>Add</span>

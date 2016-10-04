@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 import { Tab } from '../classes/tab';
 
@@ -9,6 +9,8 @@ import { Tab } from '../classes/tab';
 })
 export class RemoteTabsComponent implements OnInit {
 
+    @Input() isEditing: boolean;
+
     tabs: Tab[] = [
         {
             name: 'Tab1',
@@ -16,47 +18,56 @@ export class RemoteTabsComponent implements OnInit {
                 {
                     id: '1',
                     icon: 'power-off',
-                    label: 'label1'
+                    label: 'label1',
+                    signal: 'signal1'
                 },
                 {
                     id: '2',
                     icon: 'music',
-                    label: 'label2'
+                    label: 'label2',
+                    signal: 'signal2'
                 },
                 {
                     id: '3',
                     icon: 'rocket',
-                    label: 'label3'
+                    label: 'label3',
+                    signal: 'signal3'
                 },
                 {
                     id: '4',
                     icon: 'rocket',
-                    label: 'label3'
+                    label: 'label3',
+                    signal: 'signal3'
                 },
                 {
                     id: '5',
                     icon: 'rocket',
-                    label: 'label3'
+                    label: 'label3',
+                    signal: 'signal3'
                 },
                 {
                     id: '6',
                     icon: 'rocket',
-                    label: 'label3'
+                    label: 'label3',
+                    signal: 'signal3'
                 },
                 {
                     id: '7',
                     icon: 'rocket',
-                    label: 'label3'
+                    label: 'label3',
+                    signal: 'signal3'
                 },
                 {
                     id: '8',
                     icon: 'rocket',
-                    label: 'label3'
+                    label: 'label3',
+                    signal: 'signal3'
                 },
                 {
                     id: '9',
                     icon: 'rocket',
-                    label: 'label3'
+                    label: 'label3',
+                    signal: 'signal3'
                 },
             ]
         },
