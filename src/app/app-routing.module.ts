@@ -7,7 +7,7 @@ import { RemoteButtonEditorComponent } from "./remote-button-editor/remote-butto
 const routes: Routes = [
     {
         path: '',
-        redirectTo: '/remote/1',
+        redirectTo: 'remote/1',
         pathMatch: 'full'
     },
     {
