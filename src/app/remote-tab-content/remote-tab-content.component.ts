@@ -14,21 +14,27 @@ export class RemoteTabContentComponent implements OnInit {
 
     @Input() isEditing: boolean;
     @Input() buttons: Button[];
+    device: Device;
 
     constructor(private route: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit() {
+        this.route.params.forEach((params: Params) => {
+            let deviceId = params['deviceId'];
+            // todo
+            this.device = {
+                id: deviceId,
+                name: 'sample name',
+                clientkey: 'clientkey',
+                deviceid: 'deviceid'
+            };
+        });
     }
 
     onClickButton(button: Button) {
         if (this.isEditing) {
-            console.log(this.route.params);
-            this.route.params.forEach((params: Params) => {
-                console.log(params);
-                let deviceId = params['deviceId'];
-                this.router.navigate(['remote', deviceId, 'edit', button.id]);
-            });
+            this.router.navigate(['remote', this.device.id, 'edit', button.id]);
         } else {
             this.sendSignal(button);
         }

@@ -15,6 +15,10 @@ const routes: Routes = [
         component: RemoteComponent
     },
     {
+        path: 'remote/:deviceId/edit',
+        component: RemoteComponent
+    },
+    {
         path: 'remote/:deviceId/edit/:buttonId',
         component: RemoteButtonEditorComponent
     },

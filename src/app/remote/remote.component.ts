@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, UrlSegment, Router } from '@angular/router';
 import { Device } from '../classes/device';
 
 @Component({
@@ -12,11 +12,17 @@ export class RemoteComponent implements OnInit {
     @Input() device: Device;
     isEditing: boolean;
 
-    constructor(private route: ActivatedRoute) {
-        this.isEditing = false;
+    constructor(private route: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit() {
+        // judge isEditing.
+        this.route.url.forEach((urls: UrlSegment[]) => {
+            if (urls.pop().path === 'edit') {
+                this.isEditing = true;
+            }
+        });
+
         this.route.params.forEach((params: Params) => {
             let deviceId: string = params['deviceId'];
             this.device = {
@@ -29,6 +35,10 @@ export class RemoteComponent implements OnInit {
     }
 
     toggleEditing() {
-        this.isEditing = !this.isEditing;
+        let link = ['remote', this.device.id];
+        if (!this.isEditing) {
+            link.push('edit');
+        }
+        this.router.navigate(link);
     }
 }
