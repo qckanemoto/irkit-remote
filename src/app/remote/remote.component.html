@@ -2,10 +2,18 @@
 
 <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <tabset>
-            <tab *ngFor="let tab of tabs" [heading]="tab.name">
+        <ul class="nav nav-tabs">
+            <li *ngFor="let tab of tabs; let i = index" class="{{ i === index ? 'active' : '' }}">
+                <a routerLink="{{ '../../tab/' + i }}">
+                    {{ tab.name }}
+                </a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <div *ngFor="let tab of tabs; let i = index" class="tab-pane {{ i === index ? 'active' : '' }}">
                 <app-remote-tab-content [device]="device" [isEditing]="isEditing" [buttons]="tab.buttons"></app-remote-tab-content>
-            </tab>
-        </tabset>
+            </div>
+        </div>
     </div>
 </div>

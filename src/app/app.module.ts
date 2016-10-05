@@ -5,8 +5,6 @@ import { HttpModule } from '@angular/http';
 
 import { IRKitxRoutingModule } from './app-routing.module';
 
-import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
-
 import { AppComponent } from './app.component';
 import { NavbarBottomComponent } from './navbar-bottom/navbar-bottom.component';
 import { NavbarTopComponent } from './navbar-top/navbar-top.component';
@@ -28,7 +26,6 @@ import { RemoteButtonEditorComponent } from './remote-button-editor/remote-butto
         FormsModule,
         HttpModule,
         IRKitxRoutingModule,
-        Ng2BootstrapModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

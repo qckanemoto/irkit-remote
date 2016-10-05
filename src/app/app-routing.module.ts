@@ -7,15 +7,25 @@ import { RemoteButtonEditorComponent } from './remote-button-editor/remote-butto
 const routes: Routes = [
     {
         path: '',
-        redirectTo: 'remote/1',
+        redirectTo: 'remote/1/tab/0',
         pathMatch: 'full',
     },
     {
         path: 'remote/:deviceId',
+        redirectTo: 'remote/:deviceId/tab/0',
+        pathMatch: 'full',
+    },
+    {
+        path: 'remote/:deviceId/tab/:index',
         component: RemoteComponent,
     },
     {
         path: 'remote/:deviceId/edit',
+        redirectTo: 'remote/:deviceId/edit/tab/0',
+        pathMatch: 'full',
+    },
+    {
+        path: 'remote/:deviceId/edit/tab/:index',
         component: RemoteComponent,
         data: { isEditing: true },
     },
@@ -24,7 +34,7 @@ const routes: Routes = [
         component: RemoteButtonEditorComponent,
     },
     {
-        path: 'remote/:deviceId/add',
+        path: 'remote/:deviceId/add/tab/:index',
         component: RemoteButtonEditorComponent,
     },
     // {
@@ -46,7 +56,7 @@ const routes: Routes = [
     // {
     //     path: 'config',  // config user and sign-out
     //     component: null,
-    // }
+    // },
 ];
 
 @NgModule({

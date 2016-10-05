@@ -14,6 +14,7 @@ export class RemoteComponent implements OnInit {
     device: Device;
     isEditing: boolean;
     tabs: Tab[];
+    index: number;
 
     constructor(private route: ActivatedRoute) {
     }
@@ -27,6 +28,8 @@ export class RemoteComponent implements OnInit {
                 clientkey: 'clientkey',
                 deviceid: 'deviceid'
             };
+
+            this.index = +params['index'];
         });
 
         this.route.data.forEach(data => {
@@ -96,15 +99,15 @@ export class RemoteComponent implements OnInit {
                         label: 'label3',
                         signal: 'signal3'
                     },
-                ]
+                ],
             },
             {
                 name: 'Tab2',
-                buttons: []
+                buttons: [],
             },
             {
                 name: 'Tab3',
-                buttons: []
+                buttons: [],
             }
         ];
     }

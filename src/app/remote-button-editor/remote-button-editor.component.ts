@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Location } from "@angular/common";
 
-import { Button } from '../classes/button';
 import { Device } from '../classes/device';
+import { Button } from '../classes/button';
 
 @Component({
     selector: 'app-remote-button-editor',
