@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Router }  from '@angular/router';
 
 import { Button } from '../classes/button';
@@ -14,22 +14,12 @@ export class RemoteTabContentComponent implements OnInit {
 
     @Input() isEditing: boolean;
     @Input() buttons: Button[];
-    device: Device;
+    @Input() device: Device;
 
-    constructor(private route: ActivatedRoute, private router: Router) {
+    constructor(private router: Router) {
     }
 
     ngOnInit() {
-        this.route.params.forEach((params: Params) => {
-            let deviceId = params['deviceId'];
-            // todo
-            this.device = {
-                id: deviceId,
-                name: 'sample name',
-                clientkey: 'clientkey',
-                deviceid: 'deviceid'
-            };
-        });
     }
 
     onClickButton(button: Button) {

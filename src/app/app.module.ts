@@ -8,6 +8,8 @@ import { IRKitxRoutingModule } from './app-routing.module';
 import { Ng2BootstrapModule } from 'ng2-bootstrap/ng2-bootstrap';
 
 import { AppComponent } from './app.component';
+import { NavbarBottomComponent } from './navbar-bottom/navbar-bottom.component';
+import { NavbarTopComponent } from './navbar-top/navbar-top.component';
 import { RemoteComponent } from './remote/remote.component';
 import { RemoteTabsComponent } from './remote-tabs/remote-tabs.component';
 import { RemoteTabContentComponent } from './remote-tab-content/remote-tab-content.component';
@@ -16,6 +18,8 @@ import { RemoteButtonEditorComponent } from './remote-button-editor/remote-butto
 @NgModule({
     declarations: [
         AppComponent,
+        NavbarBottomComponent,
+        NavbarTopComponent,
         RemoteComponent,
         RemoteTabsComponent,
         RemoteTabContentComponent,
@@ -26,7 +30,7 @@ import { RemoteButtonEditorComponent } from './remote-button-editor/remote-butto
         FormsModule,
         HttpModule,
         IRKitxRoutingModule,
-        Ng2BootstrapModule
+        Ng2BootstrapModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

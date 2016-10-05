@@ -1,0 +1,32 @@
+.navbar-tab {
+    .navbar-nav {
+        margin: 0;
+        width: 100%;
+
+        li {
+            display: inline-block;
+            width: 33.3%;
+            text-align: center;
+
+            a {
+                @media (max-width: 768px) {
+                    line-height: 30px;
+                }
+            }
+        }
+    }
+}
+
+.navbar-thin {
+    min-height: 0;
+
+    li > a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+
+        @media (max-width: 768px) {
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+    }
+}

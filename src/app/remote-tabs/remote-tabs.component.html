@@ -1,5 +1,5 @@
 <tabset>
     <tab *ngFor="let tab of tabs" [heading]="tab.name">
-        <app-remote-tab-content [isEditing]="isEditing" [buttons]="tab.buttons"></app-remote-tab-content>
+        <app-remote-tab-content [device]="device" [isEditing]="isEditing" [buttons]="tab.buttons"></app-remote-tab-content>
     </tab>
 </tabset>

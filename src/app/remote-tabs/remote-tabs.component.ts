@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 
+import { Device } from '../classes/device';
 import { Tab } from '../classes/tab';
 
 @Component({
@@ -9,6 +10,7 @@ import { Tab } from '../classes/tab';
 })
 export class RemoteTabsComponent implements OnInit {
 
+    @Input() device: Device;
     @Input() isEditing: boolean;
 
     tabs: Tab[] = [
@@ -81,7 +83,8 @@ export class RemoteTabsComponent implements OnInit {
         }
     ];
 
-    constructor() { }
+    constructor() {
+    }
 
     ngOnInit() {
     }

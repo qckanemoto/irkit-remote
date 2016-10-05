@@ -1,0 +1,13 @@
+<nav class="navbar navbar-default navbar-fixed-top navbar-inline">
+    <div class="container">
+        <div class="navbar-header hidden-xs">
+            <a class="navbar-brand" routerLink="/"><i class="fa fa-play-circle"></i> IRKitx</a>
+        </div>
+        <p class="navbar-text"><i class="fa fa-wifi fa-rotate-90"></i> {{ device.name }}</p>
+        <ul class="nav navbar-nav navbar-right">
+            <li class="{{ isEditing ? 'active' : '' }}">
+                <a (click)="toggleEditing()"><i class="fa fa-{{ isEditing ? 'check' : 'cog' }}"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>

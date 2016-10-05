@@ -1,0 +1,19 @@
+.navbar-inline {
+    .navbar-header, .navbar-nav > li, .navbar-text {
+        display: inline-block;
+    }
+
+    .navbar-nav {
+        margin: 0;
+
+        li > a  {
+            @media (max-width: 768px) {
+                line-height: 30px;
+            }
+        }
+    }
+
+    .navbar-right {
+        float: right !important;
+    }
+}

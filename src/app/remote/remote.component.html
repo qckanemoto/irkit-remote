@@ -1,13 +1,9 @@
+<app-navbar-top [device]="device"></app-navbar-top>
+
 <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <ul class="nav nav-pills">
-            <li class="pull-right {{ isEditing ? 'active' : '' }}">
-                <a (click)="toggleEditing()">
-                    <i class="fa fa-{{ isEditing ? 'check' : 'cog' }}"></i>
-                </a>
-            </li>
-        </ul>
-
-        <app-remote-tabs [isEditing]="isEditing"></app-remote-tabs>
+        <app-remote-tabs [device]="device" [isEditing]="isEditing"></app-remote-tabs>
     </div>
 </div>
+
+<app-navbar-bottom [device]="device"></app-navbar-bottom>
