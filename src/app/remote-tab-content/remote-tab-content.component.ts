@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router }  from '@angular/router';
+import { ActivatedRoute, Router, Params }  from '@angular/router';
 
 import { Button } from '../classes/button';
 import { Device } from '../classes/device';
@@ -14,11 +14,15 @@ export class RemoteTabContentComponent implements OnInit {
     @Input() isEditing: boolean;
     @Input() buttons: Button[];
     @Input() device: Device;
+    tabIndex: number;
 
-    constructor(private router: Router) {
+    constructor(private route: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit() {
+        this.route.params.forEach((params: Params) => {
+            this.tabIndex = params['index'];
+        });
     }
 
     onClickButton(button: Button) {
