@@ -1,5 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { Router }  from '@angular/router';
 
 import { Button } from '../classes/button';
@@ -8,7 +7,7 @@ import { Device } from '../classes/device';
 @Component({
     selector: 'app-remote-tab-content',
     templateUrl: './remote-tab-content.component.html',
-    styleUrls: ['./remote-tab-content.component.scss']
+    styleUrls: ['./remote-tab-content.component.scss'],
 })
 export class RemoteTabContentComponent implements OnInit {
 

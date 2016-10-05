@@ -1,9 +1,11 @@
-<app-navbar-top [device]="device"></app-navbar-top>
+<app-navbar-top [device]="device" [isEditing]="isEditing"></app-navbar-top>
 
 <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
-        <app-remote-tabs [device]="device" [isEditing]="isEditing"></app-remote-tabs>
+        <tabset>
+            <tab *ngFor="let tab of tabs" [heading]="tab.name">
+                <app-remote-tab-content [device]="device" [isEditing]="isEditing" [buttons]="tab.buttons"></app-remote-tab-content>
+            </tab>
+        </tabset>
     </div>
 </div>
-
-<app-navbar-bottom [device]="device"></app-navbar-bottom>

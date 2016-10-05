@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { NavbarBottomComponent } from './navbar-bottom/navbar-bottom.component';
 import { NavbarTopComponent } from './navbar-top/navbar-top.component';
 import { RemoteComponent } from './remote/remote.component';
-import { RemoteTabsComponent } from './remote-tabs/remote-tabs.component';
 import { RemoteTabContentComponent } from './remote-tab-content/remote-tab-content.component';
 import { RemoteButtonEditorComponent } from './remote-button-editor/remote-button-editor.component';
 
@@ -21,7 +20,6 @@ import { RemoteButtonEditorComponent } from './remote-button-editor/remote-butto
         NavbarBottomComponent,
         NavbarTopComponent,
         RemoteComponent,
-        RemoteTabsComponent,
         RemoteTabContentComponent,
         RemoteButtonEditorComponent,
     ],
