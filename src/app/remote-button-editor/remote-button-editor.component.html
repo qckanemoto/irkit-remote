@@ -1,12 +1,14 @@
+<app-navbar-top [heading]="device.name"></app-navbar-top>
+
 <div class="form-group">
     <label class="form-label">Label</label>
-    <input type="text" class="form-control" placeholder="TV Power" autofocus>
+    <input type="text" class="form-control" placeholder="TV Power" autofocus [(ngModel)]="button.label">
 </div>
 <div class="form-group">
     <label class="form-label">Icon <a href="http://fontawesome.io/icons/" target="_blank"><i class="fa fa-question-circle"></i></a></label>
     <div class="input-group">
-        <span class="input-group-addon"><i class="fa fa-{{ iconInput }}" style="width: 1em;"></i></span>
-        <input type="text" class="form-control" placeholder="power-off" [(ngModel)]="iconInput">
+        <span class="input-group-addon"><i class="fa fa-{{ button.icon }}" style="width: 1em;"></i></span>
+        <input type="text" class="form-control" placeholder="power-off" [(ngModel)]="button.icon">
     </div>
 </div>
 <div class="form-group" style="margin-top: 30px;">

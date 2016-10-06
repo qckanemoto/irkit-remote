@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Device } from '../classes/device';
 import { Tab } from '../classes/tab';
@@ -16,7 +16,7 @@ export class RemoteComponent implements OnInit {
     tabs: Tab[];
     index: number;
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, private router: Router) {
     }
 
     ngOnInit() {
@@ -38,6 +38,14 @@ export class RemoteComponent implements OnInit {
 
         // todo
         this.tabs = this.getMockTabs();
+    }
+
+    toggleEditing() {
+        let link = ['remote', this.device.id];
+        if (!this.isEditing) {
+            link.push('edit');
+        }
+        this.router.navigate(link);
     }
 
     private getMockTabs(): Tab[] {

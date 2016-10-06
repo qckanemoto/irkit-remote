@@ -1,7 +1,4 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Router } from '@angular/router';
-
-import { Device } from '../classes/device';
 
 @Component({
     selector: 'app-navbar-top',
@@ -10,21 +7,12 @@ import { Device } from '../classes/device';
 })
 export class NavbarTopComponent implements OnInit {
 
-    @Input() device: Device;
-    @Input() isEditing: boolean;
+    @Input() heading: string;
 
-    constructor(private router: Router) {
+    constructor() {
     }
 
     ngOnInit() {
-    }
-
-    toggleEditing() {
-        let link = ['remote', this.device.id];
-        if (!this.isEditing) {
-            link.push('edit');
-        }
-        this.router.navigate(link);
     }
 
 }

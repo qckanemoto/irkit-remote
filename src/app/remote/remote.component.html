@@ -1,4 +1,6 @@
-<app-navbar-top [device]="device" [isEditing]="isEditing"></app-navbar-top>
+<app-navbar-top [heading]="device.name"></app-navbar-top>
+
+<a class="btn btn-link edit-switcher" (click)="toggleEditing()"><i class="fa fa-{{ isEditing ? 'check' : 'cog' }}"></i></a>
 
 <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
