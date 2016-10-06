@@ -3,6 +3,6 @@
         <div class="navbar-header hidden-xs">
             <a class="navbar-brand" routerLink="/"><i class="fa fa-play-circle"></i> IRKitx</a>
         </div>
-        <p class="navbar-text">{{ heading }}</p>
+        <p class="navbar-text"><i *ngIf="icon" class="{{ icon }}"></i> {{ heading }}</p>
     </div>
 </nav>
