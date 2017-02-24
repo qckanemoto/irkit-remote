@@ -1,8 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
+import { AngularFire, FirebaseListObservable } from 'angularfire2';
+import { AuthProviders, AuthMethods } from 'angularfire2';
+
 import { Device } from '../classes/device';
 import { Tab } from '../classes/tab';
+
+import { DeviceRepositoryService } from '../services/device-repository.service';
 
 @Component({
     selector: 'app-remote',
@@ -15,11 +20,24 @@ export class RemoteComponent implements OnInit {
     isEditing: boolean;
     tabs: Tab[];
     index: number;
+    devices: FirebaseListObservable<Device[]>;
 
-    constructor(private route: ActivatedRoute, private router: Router) {
+    constructor(private route: ActivatedRoute, private router: Router, private deviceRepository: DeviceRepositoryService, private af: AngularFire) {
     }
 
     ngOnInit() {
+        this.af.auth.login(
+            {
+                email: 'kanemoto.takashi@gmail.com',
+                password: 'Knmttks0218',
+            },
+            {
+                provider: AuthProviders.Password,
+                method: AuthMethods.Password,
+            }
+        );
+        this.devices = this.deviceRepository.getDevices();
+
         this.route.params.forEach((params: Params) => {
             let deviceId: string = params['deviceId'];
             this.device = {

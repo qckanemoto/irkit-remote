@@ -1,6 +1,10 @@
-<app-navbar-top icon="fa fa-wifi fa-rotate-90" [heading]="device.name"></app-navbar-top>
+<app-navbar-top icon="fa fa-wifi fa-rotate-90" [heading]="device.name | async"></app-navbar-top>
 
 <a class="btn btn-link edit-switcher" (click)="toggleEditing()"><i class="fa fa-{{ isEditing ? 'check' : 'cog' }}"></i></a>
+
+<ul>
+    <li *ngFor="let d of devices | async">{{ d.name }}</li>
+</ul>
 
 <div class="row">
     <div class="col-xs-12 col-md-8 col-md-offset-2">
@@ -14,7 +18,7 @@
 
         <div class="tab-content">
             <div *ngFor="let tab of tabs; let i = index" class="tab-pane {{ i === index ? 'active' : '' }}">
-                <app-remote-tab-content [device]="device" [isEditing]="isEditing" [buttons]="tab.buttons"></app-remote-tab-content>
+                <app-remote-tab-content [device]="device | async" [isEditing]="isEditing" [buttons]="tab.buttons"></app-remote-tab-content>
             </div>
         </div>
     </div>

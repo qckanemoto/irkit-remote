@@ -3,3 +3,8 @@
 // https://www.typescriptlang.org/docs/handbook/writing-declaration-files.html
 
 declare var System: any;
+
+// This is just a temporary workaround for the Angular CLI
+// see https://goo.gl/xSr5vK
+declare var require: any;
+declare var module: any;
